@@ -1,0 +1,190 @@
+main{
+  overflow: hidden;
+}
+
+.user-profile{
+  position: absolute;
+  top: 0; 
+  right: 0; 
+  background: #DDD;
+  height: 100%;
+  width: 400px;
+  transition: all 500ms;
+  border-left: 1px solid darkgrey;
+  padding: 1em;
+}
+.user-profile.show{
+  margin-right: -400px;
+}
+
+@media only screen and (max-width: 600px) {
+  .user-profile {
+    width: 100%;
+  }
+  .user-profile.show{
+    margin-right: -100%;
+  }
+}
+
+.sidebar{
+  width: 300px;
+  background: #333;
+  position: relative;
+  padding: 0 1em;
+  transition: all 500ms;
+  position: absolute;
+  height: 100%;
+}
+
+.sidebar.hide{
+  margin-left: -300px
+}
+
+.sidebar-control{
+  position: absolute;
+  top: 60px;
+  right: -20px;
+  width: 20px;
+  padding: 0 5px;
+  background: #333;
+  color: #777;
+  border-radius: 0 10px 10px 0;
+  height: 35px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.content{
+  margin-left: 300px;
+  transition: all 500ms;
+  flex-grow: 1;
+}
+.content.full{
+  margin-left: 0px
+}
+
+.menu-option{
+  margin: 0.5rem 0;
+  color: #DDD;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu-option a{
+  color: #DDD;
+  text-decoration: none;
+  cursor: pointer;
+}
+.menu-option a:hover{
+  color: #999
+}
+.menu-option:hover{
+  color: #999
+}
+.menu-option.active{
+  color: #999
+}
+.menu-option.active a{
+  color: #999
+}
+
+.event-table{
+  position: relative;
+  border-collapse: collapse; 
+}
+
+.event-table thead tr td, .event-table thead tr th{
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  font-weight: bold;
+  color: #555;
+  text-align: left;
+  padding: 0.5em 0;
+  padding-left: 5px;
+}
+
+.event-table th{
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  background-color: white;
+  position: sticky;
+  top: 0; /* Don't forget this, required for the stickiness */
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+.event-table tbody tr td{
+  padding: 0.5em 0;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.badge{
+  margin: 2px;
+  border-radius: 1em;
+  font-weight: 300;
+}
+
+.event-table tbody tr:nth-child(odd) td{
+  background: #ff77001f;
+}
+
+
+
+
+
+.background-logo{ 
+  background-color: #FFFFFF;
+  position: fixed;
+  height: 80px;
+  width: 298px;
+  margin-left: -15px;
+  margin-right: 0px;
+  z-index: 0;
+}
+
+.logo-img
+{
+  z-index: 1; 
+  position: relative;
+}
+
+#logo
+{
+  height: 50px;
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+/* .crisis-color{
+  color: red;
+}
+
+.customer-color{
+  color: cornflowerblue!important;
+} */
+
+/* .user-icon {
+  position: absolute;
+  right: 0;
+  border-left: solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 100%;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.mytasks-header {
+  border: solid 1px;
+}
+
+.mytasks-mobile-instruction {
+  border-bottom: solid 2px gray;
+}
+
+.mytasks-mobile-box-body {
+  padding-top: 1rem;
+  margin: 0 !important;
+  border: none !important;
+} */
