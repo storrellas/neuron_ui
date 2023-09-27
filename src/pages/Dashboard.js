@@ -54,49 +54,49 @@ export const Dashboard = () => {
   // }, [navigate])
 
   const isActive = ( section ) => {
-    if( section === 'elements' && location.pathname === '/dashboard/') return true
-    if( section === 'devices' && location.pathname.includes('mytasks') ) return true
+    if( section === 'devices' && location.pathname === '/dashboard') return true
+    if( section === 'elements' && location.pathname.includes('elements') ) return true
     return false
   }
 
   const getTitle = () => {
-    return ""
+    if( location.pathname === '/dashboard') return t('devices')
+    if( location.pathname.includes('elements') ) return t('elements')
+    if( location.pathname.includes('configuration') ) return t('configuration')
     return false
   }
 
-  return <main className="d-flex"  style={{height: '100vh'}} 
+  return <main className="d-flex"  style={{ height: '100vh', overflow: 'hidden', position: 'relative' }} 
           onClick={() => setShowProfile(false)}>
+
           <div className={showSidebar?"sidebar d-flex flex-column":"sidebar hide"}>
-
-
-
-            <div className="sidebar-control" style={{ zIndex: '2999', 
-              position: 'absolute'}}onClick={() => {
+            <div className="sidebar-control" 
+              style={{ zIndex: '2999', position: 'absolute'}}
+              onClick={() => {
               const status = !showSidebar;
               setShowSidebar(status);
             }}>
               <FontAwesomeIcon icon={showSidebar?faCaretLeft:faCaretRight} />
             </div>
-            {/* <div className="background-logo"/> */}
             <div className="logo-img" style={{ background: 'white', padding: '1em 0.5em'}}>
               <img id="logo" src={logo} height="100" alt="logo" />
             </div>
             <div className="ms-2 me-2 ps-1 pe-1">
 
               <div className='my-3' style={{ border: '1px 0px', borderBottom: '1px solid grey'}}>
-                <div className={isActive('my_tasks')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                <div className={isActive('devices')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
                   <FontAwesomeIcon className="me-2" icon={faHouse} />
-                  <Link to='/dashboard/mytasks' className="w-100">
+                  <Link to='/dashboard' className="w-100">
                     <div className="d-flex justify-content-between">
                       <span>{t('devices')}</span> 
                     </div>
                   </Link>
                 </div>
-                <div className={isActive('elements')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                <div className={isActive('services')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
                   <FontAwesomeIcon className="me-2" icon={faHouse} />
-                  <Link to='/dashboard/mytasks' className="w-100">
+                  <Link to='/dashboard/services' className="w-100">
                     <div className="d-flex justify-content-between">
-                      <span>{t('elements')}</span> 
+                      <span>{t('services')}</span> 
                     </div>
                   </Link>
                 </div>
@@ -107,7 +107,7 @@ export const Dashboard = () => {
               <div className={isActive('configuration')?`menu-option active`:`menu-option`} 
                 onClick={() => setShowConfiguration(!showConfiguration)}>
                 <FontAwesomeIcon className="me-2" icon={faGear} />
-                <Link>{t('configuration')}</Link> 
+                <Link to='/dashboard/configuration' >{t('configuration')}</Link> 
               </div>
             </div>
           </div>
@@ -124,16 +124,17 @@ export const Dashboard = () => {
                   <FontAwesomeIcon className="me-3 cursor-pointer" icon={faBell} />
                 </div>
                 <div className="h-100 pt-2 pb-2 me-3 cursor-pointer d-flex align-items-center" onClick={(e) => {e.stopPropagation(); setShowProfile(true)}}>
-                  <div style={{ color: '#DDD'}}>{whoami.first_name} {whoami.last_name}asfdd</div> 
+                  <div style={{ color: '#DDD'}}>{whoami.first_name} {whoami.last_name}Manu Sharma</div> 
                 </div>
               </div>
             </nav>
-            <div className="main-content flex-grow-1" style={{ height: '0px', overflow: 'auto', minHeight: 'calc(100% - 50px)'}}>
+            <div className="main-content flex-grow-1" style={{ height: '0px', overflow: 'auto', minHeight: 'calc(100% - 50px)', padding: '2em'}}>
               <Outlet />
             </div>
           </div>
 
-          <div className={`${showProfile?"user-profile":"user-profile show"}`} style={{zIndex: 100}} onClick={(e) => e.stopPropagation()}>
+
+          <div className={`${showProfile?"user-profile":"user-profile show"}`} onClick={(e) => e.stopPropagation()}>
             <h2>{t('user_profile_title')}</h2>
             <div className="mb-3">
               <label className="form-label">{t('first_name')}</label>

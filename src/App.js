@@ -7,6 +7,10 @@ import { initReactI18next } from "react-i18next";
 import { Welcome, Login } from './pages/Login'
 import { Dashboard } from './pages/Dashboard'
 
+import { Devices } from './components/Devices'
+import { Services } from './components/Services'
+import { Configuration } from './components/Configuration'
+
 window.matchMedia = false  // Removes read for 'prefers-reduced-motion'
 
 let lng = localStorage.getItem('language')
@@ -22,8 +26,15 @@ i18n
       en: {
         translation: {
           devices: 'Devices',
-          elements: 'Elements',
+          services: 'Services',
           configuration: 'Configuration',
+
+          user_profile_title: 'User Profile',
+          first_name: 'First Name',
+          last_name: 'Last Name',
+          email_address: 'Email',
+          password: 'Password',
+          retype_password: 'Retype password'
         }
       },
     },
@@ -43,7 +54,11 @@ const App = () => {
               <Route path="/" element={<Welcome />}>
                 <Route index element={<Login />} />
               </Route>
-              <Route path="/dashboard" element={<Dashboard/>} />
+              <Route path="/dashboard" element={<Dashboard/>} >
+                <Route index element={<Devices />} /> 
+                <Route path="/dashboard/services" element={<Services />} /> 
+                <Route path="/dashboard/configuration" element={<Configuration />} /> 
+              </Route>
             </Routes>
           </Router>)
 }
