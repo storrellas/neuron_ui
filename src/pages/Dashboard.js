@@ -10,8 +10,7 @@ import {
   faGear, 
   faCaretLeft,
   faCaretRight,
-  faCommenting,
-  faWrench,
+  faCommenting
 } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 import "./Dashboard.css"
@@ -27,7 +26,6 @@ export const Dashboard = () => {
   const [ showProfile, setShowProfile ] = useState(false)
   const [ showSidebar, setShowSidebar ] = useState(true)
   const [ whoami, setWhoami ] = useState({first_name: '', last_name: '', email: '', password: '', retype_password: ''})
-  const [ showReport, setShowReport ] = useState(false)
   const [ showConfiguration, setShowConfiguration ] = useState(false)
   
 
@@ -66,28 +64,31 @@ export const Dashboard = () => {
     return false
   }
 
-  return <main className="d-flex"  style={{height: '100vh', position: 'relative'}} 
+  return <main className="d-flex"  style={{height: '100vh'}} 
           onClick={() => setShowProfile(false)}>
-          <div className={showSidebar?"sidebar d-flex flex-column justify-content-between":"sidebar hide"}
-            style={{ overflowY: 'auto'}}>
-            <div className="sidebar-control" onClick={() => {
+          <div className={showSidebar?"sidebar d-flex flex-column":"sidebar hide"}>
+
+
+
+            <div className="sidebar-control" style={{ zIndex: '2999', 
+              position: 'absolute'}}onClick={() => {
               const status = !showSidebar;
               setShowSidebar(status);
-            }}>adsfsafdasdfasfdsfadsf
+            }}>
               <FontAwesomeIcon icon={showSidebar?faCaretLeft:faCaretRight} />
             </div>
-            <div className="background-logo"/>
-            <div className="ms-2 me-2">
-              <div className="logo-img">
-                <img id="logo" src={logo} height="100" alt="logo" />
-              </div>
+            {/* <div className="background-logo"/> */}
+            <div className="logo-img" style={{ background: 'white', padding: '1em 0.5em'}}>
+              <img id="logo" src={logo} height="100" alt="logo" />
+            </div>
+            <div className="ms-2 me-2 ps-1 pe-1">
+
               <div className='my-3' style={{ border: '1px 0px', borderBottom: '1px solid grey'}}>
                 <div className={isActive('my_tasks')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
                   <FontAwesomeIcon className="me-2" icon={faHouse} />
                   <Link to='/dashboard/mytasks' className="w-100">
                     <div className="d-flex justify-content-between">
                       <span>{t('devices')}</span> 
-                      {/* <span style={{ background: '#444', padding: '0 0.5em', borderRadius: '5px'}}>{mytasks}</span> */}
                     </div>
                   </Link>
                 </div>
@@ -96,7 +97,6 @@ export const Dashboard = () => {
                   <Link to='/dashboard/mytasks' className="w-100">
                     <div className="d-flex justify-content-between">
                       <span>{t('elements')}</span> 
-                      {/* <span style={{ background: '#444', padding: '0 0.5em', borderRadius: '5px'}}>{mytasks}</span> */}
                     </div>
                   </Link>
                 </div>
@@ -168,9 +168,6 @@ export const Dashboard = () => {
               <label className="form-label">Language</label>
               <select className="form-select" onChange={(e) => onChangeLanguage(e)}>
                 <option value="en">English</option>
-                <option value="fr">Francais</option>
-                <option value="nl">Dutch</option>
-                <option value="de">German</option>
               </select>
             </div>
             <div className="d-flex justify-content-end mt-3">
