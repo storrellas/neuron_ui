@@ -1,46 +1,46 @@
 
-.continuity-appversion{
+.neuron-appversion{
   text-align: right;
   top: -1rem;
   position: relative;
   right: 1.1rem;
 }
 
-.continuity-appname{
+.neuron-appname{
   bottom: 45%;
   font-family: 'montblanc';
   text-align: left;
   font-size: xx-large;
 }
-.continuity-subappname{
+.neuron-subappname{
   margin-top: -20px;
   margin-left: 5px;
 }
-.continuity-thinky{
+.neuron-thinky{
   font-family: 'montblanc';
   font-size: x-small;
   top: -20px;
   position: relative;
 }
-.continuity-input{
+.neuron-input{
   border: 1px solid grey; 
   border-radius: 5px 5px; 
   height: 40px;
   padding-left: 5px;
 }
-.continuity-input-top{
+.neuron-input-top{
   border: 1px solid grey; 
   border-radius: 5px 5px 0 0; 
   height: 40px;
   padding-left: 5px;
 }
-.continuity-input-bottom{
+.neuron-input-bottom{
   border: 1px solid grey; 
   border-radius: 0 0 5px 5px; 
   height: 40px;
   padding-left: 5px;
 }
-.continuity-btn{
+.neuron-btn{
   border: 1px solid grey; 
   border-radius: 5px; 
   height: 40px;

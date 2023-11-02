@@ -10,6 +10,7 @@ import { Dashboard } from './pages/Dashboard'
 import { Devices } from './components/Devices'
 import { Services } from './components/Services'
 import { Configuration } from './components/Configuration'
+import routes from './common/routes'
 
 window.matchMedia = false  // Removes read for 'prefers-reduced-motion'
 
@@ -25,7 +26,7 @@ i18n
     resources: {
       en: {
         translation: {
-          devices: 'Devices',
+          user: 'User',
           services: 'Services',
           configuration: 'Configuration',
 
@@ -34,7 +35,11 @@ i18n
           last_name: 'Last Name',
           email_address: 'Email',
           password: 'Password',
-          retype_password: 'Retype password'
+          retype_password: 'Retype password',
+          forgot_password: 'Forgot password',
+          remember_me: 'Remember me',
+          wrong_credentials: 'Wrong Credentials',
+          login: 'Login',
         }
       },
     },
@@ -51,11 +56,15 @@ const App = () => {
   
   return (<Router>
             <Routes>
-              <Route path="/" element={<Welcome />}>
+              <Route path={routes.welcome.url} element={<Welcome />}>
                 <Route index element={<Login />} />
               </Route>
-              <Route path="/dashboard" element={<Dashboard/>} >
-                <Route index element={<Devices />} /> 
+              <Route path={routes.dashboard.url} element={<Dashboard/>} >
+                <Route path={routes.operation_overview.url} element={<Devices />} /> 
+                <Route path={routes.meter_list.url}  element={<Devices />} /> 
+                <Route path={routes.task_status.url}  element={<Devices />} /> 
+                <Route path={routes.reports.url}  element={<Devices />} /> 
+
                 <Route path="/dashboard/services" element={<Services />} /> 
                 <Route path="/dashboard/configuration" element={<Configuration />} /> 
               </Route>

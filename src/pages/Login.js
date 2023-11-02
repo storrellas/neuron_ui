@@ -35,7 +35,7 @@ export const ForgotRegeneratePassword = () => {
       setSucessMsg( t('regenerate_success') )
     }catch(e){
       console.log("failed ", e)
-      if( e.response.data.reason !== null &&  e.response.data.reason == 'password_constraints'){
+      if( e.response.data.reason !== null &&  e.response.data.reason === 'password_constraints'){
         setErrorMsg( t('regenerate_password_constraints') )
         return
       }      
@@ -52,11 +52,11 @@ export const ForgotRegeneratePassword = () => {
 
   return (<>
           <div className="mt-3 text-center">
-            <input type="password" className="continuity-input-top input-username w-75" 
+            <input type="password" className="neuron-input-top input-username w-75" 
               placeholder={t('password')} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="text-center mt-3">
-            <input type="password" className="continuity-input-top input-username w-75" 
+            <input type="password" className="neuron-input-top input-username w-75" 
               placeholder={t('retype_password')} onChange={(e) => setRePassword(e.target.value)}/>
           </div>
           <div className="text-center cursor-pointer  btn-forgot-toggle">
@@ -88,7 +88,7 @@ export const ForgotRegeneratePassword = () => {
             </div>
           </div>
           <div className="mt-3 text-center">
-            <button className="continuity-btn w-75" onClick={() => onRegeneratePassword()}>OK</button>
+            <button className="neuron-btn w-75" onClick={() => onRegeneratePassword()}>OK</button>
           </div>
           </>)
 }
@@ -115,7 +115,7 @@ export const ForgotPassword = () => {
 
   return (<div className="dialog-forgot">
     <div className="mt-3 text-center">
-      <input className="continuity-input input-forgot w-75" placeholder="Email" 
+      <input className="neuron-input input-forgot w-75" placeholder="Email" 
         onChange={(e) => setEmail(e.target.value)}/>
     </div>
     {showSuccess?
@@ -127,7 +127,7 @@ export const ForgotPassword = () => {
     </div>
     :null}
     <div className="mt-3 text-center">
-      <button className="continuity-btn btn-forgot w-75" onClick={() => onClick()}>
+      <button className="neuron-btn btn-forgot w-75" onClick={() => onClick()}>
         {showSuccess?t('back'):'OK'}
       </button>
     </div>
@@ -145,14 +145,14 @@ export const Login = () => {
       setShowSpinner(true)
       setShowError(false)
       const body = { ...credentials}
-      const response = await axios.post(`${window.API_URL}/api/token/`, body)
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/token/`, body)
 
       // Store in local storage
       localStorage.setItem('token_access', response.data.access)
 
       // Move to dashboard
       setShowSpinner(false)
-      navigate('/dashboard/mytasks')
+      navigate('/dashboard/')
     }catch(e){
       console.log("failed", e)
       setShowError(true)
@@ -166,12 +166,12 @@ export const Login = () => {
   return(
     <div className="dialog-login mt-3">
     <div className="text-center">
-      <input className="continuity-input-top input-username w-75" placeholder={t('username')} 
+      <input className="neuron-input-top input-username w-75" placeholder={t('username')} 
         onKeyDown={(e) => isSubmit(e)} onChange={e => setCredentials({...credentials, email: e.target.value})} />
     </div>
     <div className="text-center">
       <input type="password" 
-        className="continuity-input-bottom input-password w-75" placeholder={t('password')} 
+        className="neuron-input-bottom input-password w-75" placeholder={t('password')} 
         onKeyDown={(e) => isSubmit(e)} onChange={e => setCredentials({...credentials, password: e.target.value})} />
     </div>
     <div className="text-center mt-3">
@@ -187,7 +187,7 @@ export const Login = () => {
     :null}
 
     <div className="mt-3 text-center">
-      <button className="continuity-btn btn-login w-75" 
+      <button className="neuron-btn btn-login w-75" 
         onClick={() => onLogin()}>
         {t('login')} 
         {showSpinner?<i className="fa-solid fa-spinner fa-spin ms-3"></i>:null}
@@ -212,7 +212,7 @@ export const Welcome = () => {
                     </div>
                     <Outlet />
                     <div className="mt-3 text-center">
-                      Thinky srl &copy;	2023
+                      Neuron GmbH &copy;	2023
                     </div>                  
                 </div>
               </div>

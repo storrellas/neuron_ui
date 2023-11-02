@@ -16,6 +16,7 @@ import axios from "axios";
 import "./Dashboard.css"
 import AnimateHeight from "react-animate-height";
 import { ToastContainer, Slide } from 'react-toastify';
+import routes from '../common/routes'
 
 
 
@@ -84,7 +85,56 @@ export const Dashboard = () => {
             <div className="ms-2 me-2 ps-1 pe-1">
 
               <div className='my-3' style={{ border: '1px 0px', borderBottom: '1px solid grey'}}>
-                <div className={isActive('devices')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                  <Link to={routes.operation_overview.url} className="w-100">
+                    <div className="d-flex justify-content-between">
+                      <span>{t('operation overview')}</span> 
+                    </div>
+                  </Link>
+                </div>
+
+                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                  <Link to={routes.meter_list.url} className="w-100">
+                    <div className="d-flex justify-content-between">
+                      <span>{t('meter list')}</span> 
+                    </div>
+                  </Link>
+                </div>
+
+                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                  <Link to={routes.topology.url} className="w-100">
+                    <div className="d-flex justify-content-between">
+                      <span>{t('topology')}</span> 
+                    </div>
+                  </Link>
+                </div>
+
+                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                  <Link to={routes.task_status.url} className="w-100">
+                    <div className="d-flex justify-content-between">
+                      <span>{t('task status')}</span> 
+                    </div>
+                  </Link>
+                </div>
+
+                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                  <Link to={routes.reports.url} className="w-100">
+                    <div className="d-flex justify-content-between">
+                      <span>{t('reports')}</span> 
+                    </div>
+                  </Link>
+                </div>
+
+
+                <div className={isActive('device_models')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+                  <FontAwesomeIcon className="me-2" icon={faHouse} />
+                  <Link to='/dashboard/devicemodels' className="w-100">
+                    <div className="d-flex justify-content-between">
+                      <span>{t('device_models')}</span> 
+                    </div>
+                  </Link>
+                </div>
+                <div className={isActive('devices')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
                   <FontAwesomeIcon className="me-2" icon={faHouse} />
                   <Link to='/dashboard' className="w-100">
                     <div className="d-flex justify-content-between">
