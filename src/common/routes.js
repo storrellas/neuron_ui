@@ -12,23 +12,23 @@ const routes = {
     url: "/dashboard"
   },
   operation_overview: {
-    title: "Operation Overview",
+    title: "operation_overview",
     url: "/dashboard/operation/"
   },
   meter_list: {
-    title: "Meter List",
+    title: "meter_list",
     url: "/dashboard/operation/meterlist"
   },
   topology: {
-    title: "Toppology",
+    title: "topology",
     url: "/dashboard/operation/topology"
   },
   task_status: {
-    title: "Task Status",
+    title: "task_status",
     url: "/dashboard/operation/taskstatus"
   },
   reports: {
-    title: "Reports",
+    title: "reports",
     url: "/dashboard/operation/reports"
   },
 };

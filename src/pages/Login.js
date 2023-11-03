@@ -174,9 +174,9 @@ export const Login = () => {
         className="neuron-input-bottom input-password w-75" placeholder={t('password')} 
         onKeyDown={(e) => isSubmit(e)} onChange={e => setCredentials({...credentials, password: e.target.value})} />
     </div>
-    <div className="text-center mt-3">
+    {/* <div className="text-center mt-3">
       <Link className='ms-2' to='/forgot'  style={{ color: 'black'}}>{t('forgot_password')}</Link>
-    </div>
+    </div> */}
     {showError?
     <div className="mt-3 text-center">
       <div className="alert alert-danger alert-danger-credentials w-75" 

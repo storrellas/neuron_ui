@@ -34,12 +34,21 @@ i18n
           first_name: 'First Name',
           last_name: 'Last Name',
           email_address: 'Email',
+          username: 'Username',
           password: 'Password',
           retype_password: 'Retype password',
           forgot_password: 'Forgot password',
           remember_me: 'Remember me',
           wrong_credentials: 'Wrong Credentials',
           login: 'Login',
+
+          operation: 'Operation',
+          operation_overview: 'Operation Overview',
+          meter_list: 'Meter List',
+          topology: 'Topology',
+          task_status: 'Task Status',
+          reports: 'Reports',
+          tools_monitoring: 'Tools Monitoring'
         }
       },
     },

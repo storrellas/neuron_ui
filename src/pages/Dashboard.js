@@ -10,7 +10,8 @@ import {
   faGear, 
   faCaretLeft,
   faCaretRight,
-  faCommenting
+  faCommenting,
+  faDisplay
 } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 import "./Dashboard.css"
@@ -28,6 +29,7 @@ export const Dashboard = () => {
   const [ showSidebar, setShowSidebar ] = useState(true)
   const [ whoami, setWhoami ] = useState({first_name: '', last_name: '', email: '', password: '', retype_password: ''})
   const [ showConfiguration, setShowConfiguration ] = useState(false)
+  const [ showOperation, setShowOperation ] = useState(false)
   
 
   const onChangeLanguage = (e) => {
@@ -79,86 +81,107 @@ export const Dashboard = () => {
             }}>
               <FontAwesomeIcon icon={showSidebar?faCaretLeft:faCaretRight} />
             </div>
-            <div className="logo-img" style={{ background: 'white', padding: '1em 0.5em'}}>
-              <img id="logo" src={logo} height="100" alt="logo" />
+            <div className="logo-img text-center" style={{ background: 'white', padding: '1em 0.5em'}}>
+              <img id="logo" src={logo} alt="logo" style={{ height: '80px'}} />
             </div>
-            <div className="ms-2 me-2 ps-1 pe-1">
-
-              <div className='my-3' style={{ border: '1px 0px', borderBottom: '1px solid grey'}}>
-                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
-                  <Link to={routes.operation_overview.url} className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('operation overview')}</span> 
-                    </div>
-                  </Link>
-                </div>
-
-                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
-                  <Link to={routes.meter_list.url} className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('meter list')}</span> 
-                    </div>
-                  </Link>
-                </div>
-
-                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
-                  <Link to={routes.topology.url} className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('topology')}</span> 
-                    </div>
-                  </Link>
-                </div>
-
-                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
-                  <Link to={routes.task_status.url} className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('task status')}</span> 
-                    </div>
-                  </Link>
-                </div>
-
-                <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
-                  <Link to={routes.reports.url} className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('reports')}</span> 
-                    </div>
-                  </Link>
-                </div>
-
-
-                <div className={isActive('device_models')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} style={{ marginTop: '3em' }}>
+            <div className="ms-2 me-2 pt-3 ps-1 pe-1">              
+              <div className='menu-option'>
+              
+                <div onClick={() => setShowOperation(!showOperation)}>
                   <FontAwesomeIcon className="me-2" icon={faHouse} />
-                  <Link to='/dashboard/devicemodels' className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('device_models')}</span> 
-                    </div>
-                  </Link>
+                  <span>{t('operation')}</span>
                 </div>
-                <div className={isActive('devices')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
-                  <FontAwesomeIcon className="me-2" icon={faHouse} />
-                  <Link to='/dashboard' className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('devices')}</span> 
+
+                <AnimateHeight
+                  duration={500}
+                  height={showOperation?'auto':0}>
+                  <div style={{ paddingLeft: '1em'}}>
+                  
+                    <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                      <Link to={routes.operation_overview.url} className="w-100">
+                        <div className="d-flex justify-content-between">
+                          <span>{t(routes.operation_overview.title)}</span> 
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
-                </div>
-                <div className={isActive('services')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
-                  <FontAwesomeIcon className="me-2" icon={faHouse} />
-                  <Link to='/dashboard/services' className="w-100">
-                    <div className="d-flex justify-content-between">
-                      <span>{t('services')}</span> 
+
+                    <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                      <Link to={routes.meter_list.url} className="w-100">
+                        <div className="d-flex justify-content-between">
+                          <span>{t(routes.meter_list.title)}</span> 
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
-                </div>
+
+                    <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                      <Link to={routes.topology.url} className="w-100">
+                        <div className="d-flex justify-content-between">
+                          <span>{t(routes.topology.title)}</span> 
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                      <Link to={routes.task_status.url} className="w-100">
+                        <div className="d-flex justify-content-between">
+                          <span>{t(routes.task_status.title)}</span> 
+                        </div>
+                      </Link>
+                    </div>
+
+                    <div className={isActive('operation')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                      <Link to={routes.reports.url} className="w-100">
+                        <div className="d-flex justify-content-between">
+                          <span>{t(routes.reports.title)}</span> 
+                        </div>
+                      </Link>
+                    </div>
+
+                  </div>
+                </AnimateHeight>
+
               </div>
-
- 
-
               <div className={isActive('configuration')?`menu-option active`:`menu-option`} 
                 onClick={() => setShowConfiguration(!showConfiguration)}>
                 <FontAwesomeIcon className="me-2" icon={faGear} />
                 <Link to='/dashboard/configuration' >{t('configuration')}</Link> 
               </div>
+              <div className={isActive('tools_monitoring')?`menu-option active`:`menu-option`} 
+                onClick={() => setShowConfiguration(!showConfiguration)}>
+                <FontAwesomeIcon className="me-2" icon={faDisplay} />
+                <Link to='/dashboard/configuration' >{t('tools_monitoring')}</Link> 
+              </div>
+
+
+              {/* <div className={isActive('device_models')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`} >
+                <FontAwesomeIcon className="me-2" icon={faHouse} />
+                <Link to='/dashboard/devicemodels' className="w-100">
+                  <div className="d-flex justify-content-between">
+                    <span>{t('device_models')}</span> 
+                  </div>
+                </Link>
+              </div>
+              <div className={isActive('devices')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                <FontAwesomeIcon className="me-2" icon={faHouse} />
+                <Link to='/dashboard' className="w-100">
+                  <div className="d-flex justify-content-between">
+                    <span>{t('devices')}</span> 
+                  </div>
+                </Link>
+              </div>
+              <div className={isActive('services')?`menu-option active d-flex align-items-center`:`menu-option d-flex align-items-center`}>
+                <FontAwesomeIcon className="me-2" icon={faHouse} />
+                <Link to='/dashboard/services' className="w-100">
+                  <div className="d-flex justify-content-between">
+                    <span>{t('services')}</span> 
+                  </div>
+                </Link>
+              </div> */}
+              
+
+ 
+
+
             </div>
           </div>
           
